@@ -14,39 +14,47 @@ final class ViewController: UIViewController {
     @IBOutlet var greenLightView: UIView!
     @IBOutlet var lightButton: UIButton!
     
-    private var pushLightButtonCount = 0
+    private var pushLightButtonCounter = 0
+    private var lightIsOn = 1.0
+    private var lightIsOff = 0.2
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Start Mode View
         redLightView.layer.cornerRadius = 50
         yellowLightView.layer.cornerRadius = 50
         greenLightView.layer.cornerRadius = 50
         
-        redLightView.alpha = 0.2
-        yellowLightView.alpha = 0.2
-        greenLightView.alpha = 0.2
+        redLightView.alpha = lightIsOff
+        yellowLightView.alpha = lightIsOff
+        greenLightView.alpha = lightIsOff
     }
     
     @IBAction func changeLightButton(_ sender: UIButton) {
         
-        pushLightButtonCount += 1
+        pushLightButtonCounter += 1
         
-        switch pushLightButtonCount{
+        switch pushLightButtonCounter {
             
-        case 1: redLightView.alpha = 1.0
-            yellowLightView.alpha = 0.2
-            greenLightView.alpha = 0.2
-            lightButton.setTitle("Next", for: .normal)
+        // Only Red Light On
+        case 1: redLightView.alpha = lightIsOn
+                yellowLightView.alpha = lightIsOff
+                greenLightView.alpha = lightIsOff
+                lightButton.setTitle("Next", for: .normal)
             
-        case 2: yellowLightView.alpha = 1.0
-            redLightView.alpha = 0.2
-            greenLightView.alpha = 0.2
+        // Only Yellow Light On
+        case 2: yellowLightView.alpha = lightIsOn
+                redLightView.alpha = lightIsOff
+                greenLightView.alpha = lightIsOff
             
-        default: greenLightView.alpha = 1.0
-            redLightView.alpha = 0.2
-            yellowLightView.alpha = 0.2
-            pushLightButtonCount = 0
+        // Only Green Light On
+        default: greenLightView.alpha = lightIsOn
+                redLightView.alpha = lightIsOff
+                yellowLightView.alpha = lightIsOff
+            
+        // To Re-start Counter
+                pushLightButtonCounter = 0
         }
     }
 }
