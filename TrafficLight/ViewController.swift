@@ -31,6 +31,7 @@ final class ViewController: UIViewController {
         greenLightView.alpha = lightIsOff
         
         lightButton.setTitle("START", for: .normal)
+        lightButton.layer.cornerRadius = 10
     }
     
     @IBAction func changeLightButton(_ sender: UIButton) {
