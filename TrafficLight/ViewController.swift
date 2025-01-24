@@ -16,7 +16,7 @@ final class ViewController: UIViewController {
     
     private var pushLightButtonCounter = 0
     private var lightIsOn = 1.0
-    private var lightIsOff = 0.2
+    private var lightIsOff = 0.3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,8 @@ final class ViewController: UIViewController {
         redLightView.alpha = lightIsOff
         yellowLightView.alpha = lightIsOff
         greenLightView.alpha = lightIsOff
+        
+        lightButton.setTitle("START", for: .normal)
     }
     
     @IBAction func changeLightButton(_ sender: UIButton) {
@@ -41,7 +43,7 @@ final class ViewController: UIViewController {
         case 1: redLightView.alpha = lightIsOn
                 yellowLightView.alpha = lightIsOff
                 greenLightView.alpha = lightIsOff
-                lightButton.setTitle("Next", for: .normal)
+                lightButton.setTitle("NEXT", for: .normal)
             
         // Only Yellow Light On
         case 2: yellowLightView.alpha = lightIsOn
