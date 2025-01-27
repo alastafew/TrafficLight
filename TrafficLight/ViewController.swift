@@ -22,9 +22,9 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Start Mode View
-        redLightView.layer.cornerRadius = 50
-        yellowLightView.layer.cornerRadius = 50
-        greenLightView.layer.cornerRadius = 50
+        redLightView.layer.cornerRadius = redLightView.frame.width/2
+        yellowLightView.layer.cornerRadius = yellowLightView.frame.width/2
+        greenLightView.layer.cornerRadius = greenLightView.frame.width/2
         
         redLightView.alpha = lightIsOff
         yellowLightView.alpha = lightIsOff
@@ -37,26 +37,18 @@ final class ViewController: UIViewController {
     @IBAction func changeLightButton(_ sender: UIButton) {
         
         pushLightButtonCounter += 1
-        
+        lightButton.setTitle("NEXT", for: .normal)
         switch pushLightButtonCounter {
-            
-        // Only Red Light On
+
         case 1: redLightView.alpha = lightIsOn
                 yellowLightView.alpha = lightIsOff
                 greenLightView.alpha = lightIsOff
-                lightButton.setTitle("NEXT", for: .normal)
-            
-        // Only Yellow Light On
         case 2: yellowLightView.alpha = lightIsOn
                 redLightView.alpha = lightIsOff
                 greenLightView.alpha = lightIsOff
-            
-        // Only Green Light On
         default: greenLightView.alpha = lightIsOn
                 redLightView.alpha = lightIsOff
                 yellowLightView.alpha = lightIsOff
-            
-        // To Re-start Counter
                 pushLightButtonCounter = 0
         }
     }
