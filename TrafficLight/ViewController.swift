@@ -8,11 +8,15 @@
 import UIKit
 
 final class ViewController: UIViewController {
-    @IBOutlet var redLightView: UIView!
-    @IBOutlet var yellowLightView: UIView!
-    @IBOutlet var greenLightView: UIView!
+    @IBOutlet private var redLightView: UIView!
+    @IBOutlet private var yellowLightView: UIView!
+    @IBOutlet private var greenLightView: UIView!
     
-    @IBOutlet var lightButton: UIButton!
+    @IBOutlet private var lightButton: UIButton!
+    
+    private var halfSideView: CGFloat! {
+        redLightView.frame.width / 2
+    }
     
     private var pushLightButtonCounter = 0
     private let lightIsOn = 1.0
@@ -20,16 +24,17 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        redLightView.layer.cornerRadius = redLightView.frame.width / 2
-        yellowLightView.layer.cornerRadius = yellowLightView.frame.width / 2
-        greenLightView.layer.cornerRadius = greenLightView.frame.width / 2
-        
         lightButton.layer.cornerRadius = 10
     }
-    
-    @IBAction func changeLightButton(_ sender: UIButton) {
+    //Для скалирования и понимания реальных р-ров устройства
+     override func viewWillLayoutSubviews() {
+         redLightView.layer.cornerRadius = halfSideView
+         yellowLightView.layer.cornerRadius = halfSideView
+         greenLightView.layer.cornerRadius = halfSideView
+    }
+    @IBAction private func changeLightButton() {
         pushLightButtonCounter += 1
+        
         if lightButton.currentTitle != "NEXT" {
             lightButton.setTitle("NEXT", for: .normal)
         }
@@ -47,5 +52,9 @@ final class ViewController: UIViewController {
                 pushLightButtonCounter = 0
         }
     }
+}
+// MARK: - Расширение возможностей класса методами
+extension ViewController {
+    
 }
 
